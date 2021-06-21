@@ -106,7 +106,7 @@ class DashboardHost:
         viewPagerAdapter = DashboardViewPagerAdapter(this@DashboardHost, weatherList)
         viewPagerAdapter.notifyDataSetChanged()
         binding.dashBoardViewPager.adapter = viewPagerAdapter
-        binding.dashBoardViewPager.setCurrentItem(startPos, true)
+        binding.dashBoardViewPager.setCurrentItem(startPos, false)
     }
 
     override fun onChangeBgListener(position: Int, color: Int) {

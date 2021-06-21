@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="4dp"
     android:paddingTop="48dp"
     android:paddingBottom="48dp"
@@ -13,7 +14,9 @@
         android:id="@+id/timeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:shadowColor="@color/black"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -25,11 +28,12 @@
 
     <TextView
         android:id="@+id/precipitationTV"
-        android:layout_below="@id/timeTV"
+        app:layout_constraintTop_toBottomOf="@+id/timeTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
         android:textStyle="bold"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:shadowRadius="2"
         android:textColor="@color/blue"
         android:textSize="13sp"
@@ -37,21 +41,21 @@
 
     <ImageView
         android:id="@+id/weatherImage"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/precipitationTV"
-        android:layout_centerHorizontal="true"
-        android:layout_alignStart="@id/timeTV"
-        android:layout_alignEnd="@id/timeTV"
         android:adjustViewBounds="true"
-        android:src="@drawable/ic_04d" />
+        android:src="@drawable/ic_04d"
+        app:layout_constraintEnd_toEndOf="@id/timeTV"
+        app:layout_constraintStart_toStartOf="@id/timeTV"
+        app:layout_constraintTop_toBottomOf="@+id/precipitationTV" />
 
     <TextView
         android:id="@+id/tempTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/weatherImage"
-        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toBottomOf="@+id/weatherImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:shadowColor="@color/black"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -62,4 +66,4 @@
         tools:text="15°C" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

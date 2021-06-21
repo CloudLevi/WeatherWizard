@@ -88,8 +88,6 @@ class DashboardFragmentViewModel @ViewModelInject constructor(
 
     fun getForecast(weatherModel: WeatherConvertedModel){
 
-        Log.d(TAG, "getForecast: ${weatherModel.id}, ${weatherModel.name}")
-
         callForecastByCoordinates = apiServiceWeatherByCoordinates.getWeatherForecast(
             weatherModel.lat.toString(),
             weatherModel.lon.toString(),
@@ -285,7 +283,6 @@ class DashboardFragmentViewModel @ViewModelInject constructor(
     }
 
     private fun stopRefreshLoader() = viewModelScope.launch {
-        Log.d(TAG, "stopRefreshLoader called")
         dashboardFragmentEventChannel.send(StopRefreshLoader)
     }
 

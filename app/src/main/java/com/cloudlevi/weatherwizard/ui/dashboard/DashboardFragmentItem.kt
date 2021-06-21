@@ -56,7 +56,7 @@ class DashboardFragmentItem(private val listener: DashboardHost) : Fragment(R.la
     private var dailyForecastAdapter = DailyForecastAdapter(arrayListOf(DailyConverted()))
     private lateinit var dashboardInfoAdapter: DashboardInfoAdapter
 
-    private var position = -1
+    var position = -1
 
     private val activityViewModel: MainViewModel by activityViewModels()
 
@@ -88,7 +88,8 @@ class DashboardFragmentItem(private val listener: DashboardHost) : Fragment(R.la
         }
 
         viewModel.weatherLiveData.observe(viewLifecycleOwner){
-            binding.currentTimeTV.text = it[position].currentTime
+            if (binding.currentTimeTV.text.toString() != it[position].currentTime)
+                binding.currentTimeTV.text = it[position].currentTime
         }
 
         val verticalGridLayoutManager = object : GridLayoutManager(requireContext(), 2, VERTICAL, false){

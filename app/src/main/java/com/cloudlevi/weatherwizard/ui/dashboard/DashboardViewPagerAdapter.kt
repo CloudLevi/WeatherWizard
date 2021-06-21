@@ -13,7 +13,7 @@ class DashboardViewPagerAdapter(
     private val fragmentHost: Fragment,
     private var weatherList: List<WeatherConvertedModel>,
 ) : FragmentStateAdapter(fragmentHost) {
-    private val listOfFragments = HashMap<Int, Fragment>()
+    private val listOfFragments = HashMap<Int, DashboardFragmentItem>()
     private var arrayWeatherList = ArrayList(weatherList)
         set(value) {
             field = value
@@ -41,7 +41,13 @@ class DashboardViewPagerAdapter(
     fun submitList(newWeatherList: List<WeatherConvertedModel>) {
 
         if (arrayWeatherList.size != newWeatherList.size) {
-            (fragmentHost as DashboardHost).invalidateAdapter(ArrayList(newWeatherList), arrayWeatherList.size)
+            when {
+                arrayWeatherList.size - newWeatherList.size == -1 -> {
+                    arrayWeatherList = ArrayList(newWeatherList)
+                    notifyItemInserted(arrayWeatherList.size - 1)
+                }
+                else -> (fragmentHost as DashboardHost).invalidateAdapter(ArrayList(newWeatherList), arrayWeatherList.size)
+            }
         } else {
             if (arrayWeatherList.size != 0) {
                 //Compare old items with new, update UI
@@ -72,6 +78,13 @@ class DashboardViewPagerAdapter(
                 (fragmentHost as DashboardHost).invalidateAdapter(arrayWeatherList)
             }
         }
+    }
+
+    private fun findDeletedItem(biggerList: ArrayList<WeatherConvertedModel>, smallerList: ArrayList<WeatherConvertedModel>): Int{
+        for ((index, item) in biggerList.withIndex()){
+            if (item != smallerList[index]) return index
+        }
+        return -1
     }
 }
 

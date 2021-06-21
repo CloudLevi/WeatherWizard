@@ -68,16 +68,13 @@ class CityListObservedAdapter(
     fun submitListNew(newWeatherList: List<WeatherConvertedModel>, position: Int = -1) {
 
         if (currentList == newWeatherList) {
-            Log.d(TAG, "Same weather list!")
             return
         }
         else{
             if (currentList.size != newWeatherList.size) {
-                Log.d(TAG, "submitListNew: First if")
                 if (currentList.size == newWeatherList.size + 1 && position != -1) {
                     currentList = ArrayList(newWeatherList)
                     notifyItemRemoved(position)
-                    Log.d(TAG, "Notify Item removed $position")
                     return
                 }
                 else currentList = ArrayList(newWeatherList)
@@ -97,7 +94,6 @@ class CityListObservedAdapter(
             }
         }
 
-        Log.d(TAG, "Notify Data set changed")
         notifyDataSetChanged()
     }
 

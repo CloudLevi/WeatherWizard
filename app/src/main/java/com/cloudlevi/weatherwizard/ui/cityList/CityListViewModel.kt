@@ -37,7 +37,6 @@ class CityListViewModel @ViewModelInject constructor(
         if (weather != null) {
             wizardDao.deleteObservedWeather(weather)
             deletedPosition = position
-            Log.d(TAG, "deleted position set: $deletedPosition")
         }
         else Log.d(TAG, "onDeleteClicked: Weather Model is null at index: $position")
     }

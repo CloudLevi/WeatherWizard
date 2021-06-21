@@ -3,6 +3,7 @@ package com.cloudlevi.weatherwizard.ui.dashboard
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.cloudlevi.weatherwizard.data.HourlyConverted
 import com.cloudlevi.weatherwizard.databinding.ForecastHourlyItemBinding
